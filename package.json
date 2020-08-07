@@ -1,0 +1,34 @@
+{
+  "name": "website-headlines-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WPUtvecklare/website-headlines-checker.git"
+  },
+  "author": "Adam Bergman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WPUtvecklare/website-headlines-checker/issues"
+  },
+  "homepage": "https://github.com/WPUtvecklare/website-headlines-checker#readme"
+}
