@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../context/GlobalContext'
 import HeadlineList from './HeadlineList'
-import LinkList from './LinksList'
 import _ from 'lodash'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,9 +10,6 @@ import {
   ListSubheader,
   Grid,
   Typography,
-  ListItem,
-  ListItemText,
-  Divider,
 } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -40,12 +36,11 @@ const Website = () => {
       setLoading(true)
       getWebsiteElements()
         .then((result) => {
-          console.log(result.code)
           if (result.code === 'ENOTFOUND') {
             setError(true)
             setLoading(false)
           } else {
-            setElements({ headlines: result.headlines, links: result.links })
+            setElements({ headlines: result.headlines })
             setLoading(false)
             setError(false)
           }
@@ -56,12 +51,6 @@ const Website = () => {
         })
     }
   }, [query])
-
-  useEffect(() => {
-    if (elements) {
-      console.log(elements.links)
-    }
-  }, [elements])
 
   const getWebsiteElements = async () => {
     const result = await window.fetch(`/api/scrape/${query}`)
@@ -78,11 +67,11 @@ const Website = () => {
         </Grid>
       ) : hasError ? (
         <p>
-          <b>{query}</b> is not a valid domain name
+          <b>{decodeURI(query)}</b> is not a valid domain name
         </p>
-      ) : elements.headlines && elements.links ? (
+      ) : elements.headlines ? (
         <>
-          <Typography align='center'>{query}</Typography>
+          <Typography align='center'>{decodeURI(query)}</Typography>
           <List
             component='div'
             aria-labelledby='nested-list-subheader'
@@ -104,7 +93,6 @@ const Website = () => {
               />
             ))}
           </List>
-          <LinkList links={elements.links} />
         </>
       ) : (
         ''

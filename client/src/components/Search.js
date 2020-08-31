@@ -6,8 +6,8 @@ import { Grid, TextField, Button } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: theme.spacing(3),
-  },
+    paddingBottom: theme.spacing(3)
+  }
 }))
 
 const Search = ({ history }) => {
@@ -49,7 +49,7 @@ const Search = ({ history }) => {
             error={!isValidUrl}
             helperText={
               !isValidUrl &&
-              'Please enter a valid domain name, e.g. example.com'
+            'Please enter a valid domain name, e.g. example.com'
             }
             InputProps={{
               endAdornment: (
@@ -60,7 +60,7 @@ const Search = ({ history }) => {
                 >
                   Search
                 </Button>
-              ),
+              )
             }}
           />
         </Grid>

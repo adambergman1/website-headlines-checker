@@ -3,7 +3,8 @@ const fetch = require('node-fetch')
 
 const scrape = async (req, res, next) => {
   const params = req.params[0]
-  const url = addHttpPrefix(params)
+  const url = encodeURI(addHttpPrefix(params))
+  console.log(url)
 
   const headlines = {
     h1: [],
@@ -11,10 +12,8 @@ const scrape = async (req, res, next) => {
     h3: [],
     h4: [],
     h5: [],
-    h6: []
+    h6: [],
   }
-
-  const linksArray = []
 
   try {
     const result = await fetch(url)
@@ -28,15 +27,7 @@ const scrape = async (req, res, next) => {
       headlines[h] = element
     })
 
-    const links = $('a')
-    $(links).each((i, link) => {
-      const text = $(link).text()
-      const href = $(link).attr('href')
-      const newLink = { text, href }
-      linksArray.push(newLink)
-    })
-
-    res.send({ headlines, links: linksArray })
+    res.send({ headlines })
   } catch (error) {
     res.send(error)
   }
@@ -47,5 +38,5 @@ const addHttpPrefix = (url) => {
 }
 
 module.exports = {
-  scrape
+  scrape,
 }
