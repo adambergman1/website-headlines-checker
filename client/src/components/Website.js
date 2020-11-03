@@ -9,18 +9,18 @@ import {
   List,
   ListSubheader,
   Grid,
-  Typography,
+  Typography
 } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(3)
   },
   headline: {
     fontSize: '24px',
-    paddingBottom: theme.spacing(3),
-  },
+    paddingBottom: theme.spacing(3)
+  }
 }))
 
 const Website = () => {
